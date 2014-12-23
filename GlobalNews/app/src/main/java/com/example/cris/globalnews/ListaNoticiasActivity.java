@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import java.util.ArrayList;
 import android.app.Activity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -21,7 +20,6 @@ import org.json.JSONObject;
 import android.os.AsyncTask;
 
 import android.content.Intent;
-import android.os.Bundle;
 
 import android.util.Log;
 
@@ -104,8 +102,6 @@ public class ListaNoticiasActivity extends Activity {
                             Toast.LENGTH_LONG).show();
 
                     Intent i = new Intent(ctx, NotaActivity.class);
-
-                    Log.e(TAG, "" + ids_notas.get(position));
 
                     i.putExtra("id_nota", ids_notas.get(position).toString());
                     startActivity(i);

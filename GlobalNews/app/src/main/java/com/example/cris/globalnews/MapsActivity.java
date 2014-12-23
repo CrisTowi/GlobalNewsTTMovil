@@ -1,11 +1,13 @@
 package com.example.cris.globalnews;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,18 +22,23 @@ import android.content.Context;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import android.os.AsyncTask;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
-public class MapsActivity extends FragmentActivity {
+public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener {
     LocationManager locationManager;
     String provider;
     Location location;
     ArrayList resultado = new ArrayList();
     Context ctx = this;
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    private Map<String, Noticia> markersMap = new HashMap<String, Noticia>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +85,26 @@ public class MapsActivity extends FragmentActivity {
 
         for(int i = 0; i < resultado.size(); i++){
             Noticia n = (Noticia)resultado.get(i);
-            mMap.addMarker(new MarkerOptions().position(new LatLng(n.getLatitud(), n.getLongitud())).title(n.getTitulo()));
+            mMap.setOnMarkerClickListener(this);
+
+            MarkerOptions marker = new MarkerOptions().position(new LatLng(n.getLatitud(), n.getLongitud())).title(n.getTitulo());
+
+            Marker m = mMap.addMarker(marker);
+            markersMap.put(m.getId(), n);
         }
+
+    }
+
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
+
+        Noticia noticia = markersMap.get(marker.getId());
+        Intent i = new Intent(ctx, NotaActivity.class);
+
+        i.putExtra("id_nota", Integer.toString(noticia.getId()));
+        startActivity(i);
+
+        return false;
     }
 
     // you can make this class as another java file so it will be separated from your main activity.
@@ -116,6 +141,8 @@ public class MapsActivity extends FragmentActivity {
 
                     newsData.setLatitud(jsonO.getDouble("latitud"));
                     newsData.setLongitud(jsonO.getDouble("longitud"));
+
+                    newsData.setId(jsonO.getInt("id"));
 
                     ids_notas.add(jsonO.getInt("id"));
                     results.add(newsData);
