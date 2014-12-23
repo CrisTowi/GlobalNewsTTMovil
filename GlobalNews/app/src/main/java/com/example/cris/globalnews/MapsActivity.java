@@ -14,9 +14,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
-import android.location.Criteria;
+
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.content.Context;
 
@@ -26,10 +25,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.os.AsyncTask;
-
-import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
 
 public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener {
     LocationManager locationManager;
@@ -51,7 +46,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
     private void setUpMapIfNeeded(ArrayList resultado) {
 
-        ServicioGPS servicio = new ServicioGPS(ctx);
+        ServicioLocalizacion servicio = new ServicioLocalizacion(ctx);
 
         double lat = servicio.getLatitud();
         double lng = servicio.getLongitud();

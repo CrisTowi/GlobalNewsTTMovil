@@ -34,11 +34,6 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ListaNoticiasActivity"
@@ -47,6 +42,15 @@
         <activity
             android:name=".NotaActivity"
             android:label="@string/title_activity_nota" >
+        </activity>
+        <activity
+            android:name=".NuevaNoticiaActivity"
+            android:label="@string/title_activity_nueva_noticia" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

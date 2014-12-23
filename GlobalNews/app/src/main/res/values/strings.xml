@@ -7,5 +7,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_nota">NotaActivity</string>
+    <string name="title_activity_nueva_noticia">NuevaNoticiaActivity</string>
 
 </resources>

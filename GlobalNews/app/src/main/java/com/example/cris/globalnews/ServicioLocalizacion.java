@@ -9,7 +9,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 
-public class ServicioGPS extends Service implements LocationListener{
+public class ServicioLocalizacion extends Service implements LocationListener{
 
     private final Context ctx;
     double latitud;
@@ -18,14 +18,14 @@ public class ServicioGPS extends Service implements LocationListener{
     boolean gpsActivo;
     LocationManager locationManager;
 
-    public ServicioGPS(){
+    public ServicioLocalizacion(){
         super();
         this.ctx = this.getApplicationContext();
 
         getLocation();
     }
 
-    public ServicioGPS(Context c){
+    public ServicioLocalizacion(Context c){
         super();
         this.ctx = c;
 
